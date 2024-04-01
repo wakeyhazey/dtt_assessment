@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:real_estate_dtt/utils/custom_textstyle.dart';
+import 'package:sizer/sizer.dart';
 
 class SearchEmptyViewWidget extends StatelessWidget {
   const SearchEmptyViewWidget({super.key});
@@ -11,12 +13,18 @@ class SearchEmptyViewWidget extends StatelessWidget {
         children: [
           Center(
             child: SizedBox(
-                height: 300,
-                width: 300,
+                height: 30.h,
+                width: 65.w,
                 child: Image.asset('assets/Images/search_state_empty.png')),
           ),
-          const Text('No results found!'),
-          const Text('Perhaps try another search?')
+          Text(
+            'No results found!',
+            style: CustomTextStyle.body,
+          ),
+          Text(
+            'Perhaps try another search?',
+            style: CustomTextStyle.body,
+          )
         ],
       ),
     );

@@ -17,7 +17,7 @@ class SearchViewWidget extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
-          const SearchAppBar(),
+          SearchAppBar(),
           if (listings.isNotEmpty)
             Expanded(
               child: ListView.builder(

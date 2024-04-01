@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:real_estate_dtt/models/house_detail_model.dart';
 import 'package:real_estate_dtt/pages/house_detail_page.dart';
-import 'package:real_estate_dtt/utils/constants.dart';
+import 'package:real_estate_dtt/ui/house_stats.dart';
 import 'package:real_estate_dtt/utils/custom_textstyle.dart';
+import 'package:sizer/sizer.dart';
 
 class ListingContainer extends StatelessWidget {
   final HouseDetailModel house;
@@ -22,7 +22,7 @@ class ListingContainer extends StatelessWidget {
                       HouseDetailsPageWidget(houseDetails: house)));
         },
         child: Container(
-          height: 120,
+          height: 13.h,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -38,8 +38,8 @@ class ListingContainer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: SizedBox(
-                  height: 100,
-                  width: 100,
+                  height: 12.h,
+                  width: 25.w,
                   child: Image.network(
                     "https://intern.d-tt.nl${house.image}",
                     fit: BoxFit.cover,
@@ -51,63 +51,30 @@ class ListingContainer extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '\$${house.price.toString()}',
-                              style: CustomTextStyle.title02,
-                            ),
-                            Text(
-                              '${house.zipCode} ${house.city}',
-                              style: CustomTextStyle.subtitle,
-                            )
-                          ],
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '\$${house.price.toString()}',
+                            style: CustomTextStyle.title02,
+                          ),
+                          Text(
+                            '${house.zipCode} ${house.city}',
+                            style: CustomTextStyle.subtitle,
+                          )
+                        ],
                       ),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset('assets/Icons/ic_bed.svg',
-                                    colorFilter: greySvgColor),
-                                Text(house.bedrooms.toString()),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset('assets/Icons/ic_bath.svg',
-                                    colorFilter: greySvgColor),
-                                Text(house.bathrooms.toString())
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset('assets/Icons/ic_layers.svg',
-                                    colorFilter: greySvgColor),
-                                Text(house.size.toString())
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset('assets/Icons/ic_location.svg',
-                                    colorFilter: greySvgColor),
-                                Text(house.distance != null
-                                    ? house.distance!.toStringAsFixed(2)
-                                    : 'null')
-                              ],
-                            ),
-                          ],
-                        ),
+                      HouseStats(
+                        bathrooms: house.bathrooms,
+                        bedrooms: house.bedrooms,
+                        size: house.size,
+                        distance: house.distance,
                       )
                     ],
                   ),

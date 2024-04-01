@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:real_estate_dtt/models/house_detail_model.dart';
 import 'package:real_estate_dtt/ui/house_details_banner.dart';
+import 'package:real_estate_dtt/ui/house_stats.dart';
 import 'package:real_estate_dtt/ui/location_map.dart';
 import 'package:real_estate_dtt/utils/custom_textstyle.dart';
 import 'package:sizer/sizer.dart';
@@ -21,62 +22,68 @@ class _HouseDetailsPageWidgetState extends State<HouseDetailsPageWidget> {
       HouseDetailsBanner(
         houseDetails: widget.houseDetails,
       ),
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-              child: Text(
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
                 '\$${widget.houseDetails.price}',
                 style: CustomTextStyle.title01,
               ),
-            )
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-              child: Text(
+              HouseStats(
+                bathrooms: widget.houseDetails.bathrooms,
+                bedrooms: widget.houseDetails.bedrooms,
+                size: widget.houseDetails.size,
+                distance: widget.houseDetails.distance,
+              )
+            ],
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
                 'Description',
                 style: CustomTextStyle.title01,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 8.0, bottom: 8.0, right: 16, left: 16),
-              child: Text(
+              SizedBox(
+                height: 2.h,
+              ),
+              Text(
                 widget.houseDetails.description,
                 style: CustomTextStyle.body,
-              ),
-            )
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-              child: Text(
+              )
+            ],
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
                 'Location',
                 style: CustomTextStyle.title01,
               ),
-            ),
-            SizedBox(
-                height: 25.h,
-                width: double.infinity,
-                child: LocationMap(
-                  latitude: widget.houseDetails.latitude,
-                  longitude: widget.houseDetails.longitude,
-                  title: widget.houseDetails.zipCode,
-                )),
-          ],
-        )
-      ]),
+              SizedBox(
+                height: 2.h,
+              ),
+              SizedBox(
+                  height: 25.h,
+                  width: double.infinity,
+                  child: LocationMap(
+                    latitude: widget.houseDetails.latitude,
+                    longitude: widget.houseDetails.longitude,
+                    title: widget.houseDetails.zipCode,
+                  )),
+            ],
+          )
+        ]),
+      ),
     ]));
   }
 }

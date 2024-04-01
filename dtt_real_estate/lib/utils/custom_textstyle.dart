@@ -9,14 +9,14 @@ class CustomTextStyle {
       fontFamily: 'GothamSSm', fontWeight: FontWeight.bold, fontSize: 16);
   static TextStyle title03 = const TextStyle(
       fontFamily: 'GothamSSm', fontWeight: FontWeight.bold, fontSize: 12);
-  static TextStyle body =
-      const TextStyle(fontFamily: 'GothamSSm', fontSize: 12);
+  static TextStyle body = const TextStyle(
+      fontFamily: 'GothamSSm', fontSize: 12, color: Color(0xff66000000));
   static TextStyle input = const TextStyle(
       fontFamily: 'GothamSSm', fontWeight: FontWeight.bold, fontSize: 12);
   static TextStyle hint = const TextStyle(
       fontFamily: 'GothamSSm', fontWeight: FontWeight.bold, fontSize: 12);
-  static TextStyle subtitle =
-      const TextStyle(fontFamily: 'GothamSSm', fontSize: 10);
+  static TextStyle subtitle = const TextStyle(
+      fontFamily: 'GothamSSm', fontSize: 10, color: Color(0xff66000000));
   static TextStyle detail = const TextStyle(
       fontFamily: 'GothamSSm', fontWeight: FontWeight.bold, fontSize: 12);
 }

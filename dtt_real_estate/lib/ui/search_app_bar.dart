@@ -6,7 +6,7 @@ import 'package:real_estate_dtt/utils/constants.dart';
 import 'package:real_estate_dtt/utils/custom_textstyle.dart';
 
 class SearchAppBar extends StatelessWidget {
-  const SearchAppBar({super.key});
+  SearchAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,29 @@ class SearchAppBar extends StatelessWidget {
                   child: TextField(
                     controller: context.read<RootPageBloc>().searchTerm,
                     decoration: InputDecoration(
-                        suffixIcon: Container(
-                          padding: const EdgeInsets.all(10),
-                          child: SvgPicture.asset(
-                            'assets/Icons/ic_search.svg',
-                            colorFilter: greySvgColor,
-                            // height: 20.h,
-                          ),
-                        ),
+                        suffixIcon:
+                            context.read<RootPageBloc>().searchTerm.text.isEmpty
+                                ? Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: SvgPicture.asset(
+                                      'assets/Icons/ic_search.svg',
+                                      colorFilter: greySvgColor,
+                                      // height: 20.h,
+                                    ),
+                                  )
+                                : IconButton(
+                                    onPressed: () {
+                                      context.read<RootPageBloc>().add(
+                                          SearchListings(
+                                              searchString: context
+                                                  .read<RootPageBloc>()
+                                                  .searchTerm
+                                                  .text = ''));
+                                    },
+                                    icon: SvgPicture.asset(
+                                      'assets/Icons/ic_close.svg',
+                                    ),
+                                  ),
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(10.0),
@@ -44,6 +59,9 @@ class SearchAppBar extends StatelessWidget {
                         hintStyle: CustomTextStyle.hint,
                         filled: true,
                         fillColor: const Color(0xffEBEBEB)),
+                    onTapOutside: (PointerDownEvent event) {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    },
                     onChanged: (value) {
                       context.read<RootPageBloc>().add(SearchListings(
                           searchString:

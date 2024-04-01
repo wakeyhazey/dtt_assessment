@@ -24,25 +24,21 @@ class LocationMap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Padding(
-          padding:
-              const EdgeInsets.only(top: 8.0, bottom: 8.0, right: 16, left: 16),
-          child: GoogleMap(
-            myLocationButtonEnabled: false,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(latitude, longitude),
-              zoom: 14.4746,
-            ),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-            markers: {
-              Marker(
-                markerId: const MarkerId('id'),
-                position: LatLng(latitude, longitude),
-              )
-            },
+        GoogleMap(
+          myLocationButtonEnabled: false,
+          initialCameraPosition: CameraPosition(
+            target: LatLng(latitude, longitude),
+            zoom: 14.4746,
           ),
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          markers: {
+            Marker(
+              markerId: const MarkerId('id'),
+              position: LatLng(latitude, longitude),
+            )
+          },
         ),
         Align(
           alignment: Alignment.topRight,
@@ -56,14 +52,14 @@ class LocationMap extends StatelessWidget {
                       builder: (BuildContext context) {
                         return SizedBox(
                           height: 200,
-                          width: 300,
                           child: Center(
                             child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text('Open with',
-                                      style: CustomTextStyle.title02),
+                                      style: CustomTextStyle.title03),
                                   ...availableMaps
                                       .map((map) => Card(
                                             child: ListTile(
@@ -74,7 +70,10 @@ class LocationMap extends StatelessWidget {
                                                     map,
                                                     title);
                                               },
-                                              title: Text(map.mapName),
+                                              title: Text(
+                                                map.mapName,
+                                                style: CustomTextStyle.title02,
+                                              ),
                                             ),
                                           ))
                                       .toList(),

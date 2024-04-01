@@ -14,7 +14,7 @@ class CustomTextStyle {
   static TextStyle input = const TextStyle(
       fontFamily: 'GothamSSm', fontWeight: FontWeight.bold, fontSize: 12);
   static TextStyle hint = const TextStyle(
-      fontFamily: 'GothamSSm', fontWeight: FontWeight.bold, fontSize: 12);
+      fontFamily: 'GothamSSm', fontSize: 12, color: Color(0xff33000000));
   static TextStyle subtitle = const TextStyle(
       fontFamily: 'GothamSSm', fontSize: 10, color: Color(0xff66000000));
   static TextStyle detail = const TextStyle(
